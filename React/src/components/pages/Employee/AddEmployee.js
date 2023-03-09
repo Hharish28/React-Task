@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
+
 import React,{useState,useEffect} from 'react'
-// import axios from 'axios'
+
 import{useNavigate,useParams} from 'react-router-dom'
 import { saveData , updateData , getDataById } from '../../../services/EmployeeServices'
 
@@ -19,7 +19,9 @@ const AddEmployee = () => {
     } else{
       setEmployee({
             name : "",
-            age : ""
+            age : "",
+            contact : "",
+            city : "",
         })
     }
 }, [params.id])
@@ -27,31 +29,26 @@ const AddEmployee = () => {
 
 
 let hendalchange = (e, t)=>{
-    // setUser((prevData)=>{
-    //     return {...prevData, [t] : e.target.value}
-    // })
+   
     setEmployee(prevData=>({...prevData, [t] : e.target.value}))
 }
 
 let hendalsubmit = () =>{
-        // console.log(employee);
-        // axios.post("http://localhost:4200/student", employee).then(result=>{
-        //     console.log(result);
-        // })
+        
         if(params.id){
             updateData(params.id, employee).then(result=>{
                 
                 navigate("/employee/list");
 
-                // navigate("http://localhost:3000/admin");
+                
             })
         } else{
             saveData(employee).then(result=>{
-                console.log(result.data);
+                // console.log(result.data);
                 
                 navigate("/employee/list");
 
-                // navigate("http://localhost:3000/admin");
+               
 
             })
         }
@@ -78,7 +75,24 @@ let hendalsubmit = () =>{
               <div className='form-group'>
                <label htmlFor=''>Age</label>
                 <input type='text' name='age'   className='form-control' value={employee.age} onChange={(e)=>hendalchange(e,"age")} />
-              </div>           
+              </div>  
+
+               <div className='form-group'>
+               <label htmlFor=''>Contact</label>
+                <input type='text' name='contact'   className='form-control' value={employee.contact} onChange={(e)=>hendalchange(e,"contact")} />
+              </div>  
+
+              <div className="form-group">
+                           <label htmlFor="">City</label>
+                           <select type="text" value={employee.city} name='city' onChange={(e)=>hendalchange(e, "city")} className='form-control'>
+                           <option>Select</option>
+                           <option>Indore</option>
+                           <option>Bhopal</option>
+                           <option>Mumbai</option>
+                           <option>Delhi</option>
+                           <option>Pune</option>
+                           </select>                
+                        </div>        
              </div>
 
              <div className='card-footer'>

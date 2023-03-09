@@ -43,10 +43,11 @@ useEffect(()=>{
                 <table className='table table-dark table-hover'>
                     <thead>
                         <tr>
-                            <th>S.no.</th>
-                            <th>FullName</th>
+                            <th>S.NO.</th>
+                            <th>Full Name</th>
                             <th>Age</th>
-                            
+                            <th>Contact</th>
+                            <th>City</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
@@ -58,8 +59,11 @@ useEffect(()=>{
                                     <tr key={i}>
                                         <td>{i+1}</td>
                                         <td>{t.name}</td>
+                                    
                                         
                                         <td>{t.age}</td>
+                                        <td>{t.contact}</td>
+                                        <td>{t.city}</td>
                                         <td><button onClick={()=>(confdelete(t))} className='btn btn-sm btn-danger'>Delete</button></td>
                                         <td><button onClick={()=>(edit(t))} className='btn btn-sm btn-warning'>Edit</button></td>
                                     </tr>
